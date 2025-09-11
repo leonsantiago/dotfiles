@@ -1,0 +1,41 @@
+
+configuration {
+    modi: "drun,run";
+    font: "JetBrainsMono Nerd Font 12";
+    show-icons: false;
+    icon-theme: "Papirus";
+    terminal: "wezterm";
+}
+
+* {
+    background:  #1e1e2eff;
+    background-alt: #1e1e2eff;
+    foreground:  #f8f8f2ff;
+    selected:    #bd93f9ff;
+    active:      #50fa7bff;
+    urgent:      #ff5555ff;
+}
+
+mainbox {
+    background-color: @background;
+}
+
+listview {
+    background-color: @background;
+    scrollbar: true;
+    padding: 5px;
+}
+
+element {
+    background-color: @background;
+    text-color: @foreground;
+}
+
+element selected {
+    background-color: @selected;
+    text-color: @background;
+}
+//@theme "/home/akhenaton/.local/share/rofi/themes/squared-material-red.rasi"
+//@theme "/usr/share/rofi/themes/android_notification.rasi"
+//@theme "/usr/share/rofi/themes/Arc-Dark.rasi"
+@theme "/usr/share/rofi/themes/Arc-Dark.rasi"

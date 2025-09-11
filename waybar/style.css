@@ -1,0 +1,28 @@
+@import "themes/catppuccin/themes/frappe.css";
+
+
+label.module {
+  margin: 10px;
+  padding: 0 10px;
+  box-shadow: inset 0 -3px;
+}
+
+box.module button:hover {
+    box-shadow: inset 0 -3px #ffffff;
+}
+/* General spacing between modules */
+#workspaces,
+#mode,
+#window,
+#network,
+#memory,
+#cpu,
+#temperature,
+#custom-keyboard-layout,
+#battery,
+#tray,
+#clock,
+#clock.date,
+#clock.time {
+  margin: 0 6px;
+}
