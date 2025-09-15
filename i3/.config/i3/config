@@ -31,10 +31,8 @@ exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # Captura área → guarda y copia
-bindsym Shift+Print exec scrot -s -e 'xclip -selection clipboard -t image/png -i $f' ~/Pictures/%Y-%m-%d-%H%M%S.png
 
-# Captura pantalla completa → guarda y copia
-bindsym Print exec scrot -e 'xclip -selection clipboard -t image/png -i $f' ~/Pictures/%Y-%m-%d-%H%M%S.png
+bindsym --release Print exec --no-startup-id bash -c 'scrot -s "$HOME/Pictures/%Y-%m-%d-%H%M%S.png" -e "xclip -selection clipboard -t image/png -i \"$f\""'
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
