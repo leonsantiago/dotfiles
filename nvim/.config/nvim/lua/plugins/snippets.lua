@@ -1,6 +1,6 @@
 return {
   {
-    "echasnovski/mini.snippets",
+    "nvim-mini/mini.snippets",
     opts = function(_, opts)
       local S = require("mini.snippets")
       -- Merge Ruby + Rails snippets, and add ERB for views
