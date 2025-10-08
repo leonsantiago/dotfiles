@@ -32,7 +32,7 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # Captura área → guarda y copia
 
-bindsym --release Print exec --no-startup-id bash -c 'scrot -s "$HOME/Pictures/%Y-%m-%d-%H%M%S.png" -e "xclip -selection clipboard -t image/png -i \"$f\""'
+bindsym --release Print exec --no-startup-id bash -c 'scrot -s "$HOME/Pictures/%Y-%m-%d-%H%M%S.png" -e "xclip -selection clipboard -t image/png -i \"$f\" -loops 1"'
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -243,7 +243,7 @@ client.urgent           #e06c75       #e06c75       $text-color   #e06c75       
 for_window [class="^.*"] border pixel 2
 
 
-exec_always --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/nordic-wallpapers/wallpapers/ign_unsplash8.png
+exec_always --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/nordic-wallpapers/wallpapers/ign-0002.png
 
 exec_always --no-startup-id picom --experimental-backends --backend glx --config ~/.config/picom/picom.conf --xrender-sync-fence
 
@@ -285,7 +285,5 @@ bindsym $mod+Shift+p exec --no-startup-id bash -c 'pgrep -x picom >/dev/null && 
 
 
 exec_always --no-startup-id sh -c "pkill -x polybar; sleep 1; polybar -r main --config=$HOME/.config/polybar/config.ini"
-# Disable tiling mode when gaming
-for_window [class="cs2"] floating enable;
 
 exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets,ssh
