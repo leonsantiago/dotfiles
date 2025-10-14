@@ -32,7 +32,7 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # Captura área → guarda y copia
 
-bindsym --release Print exec --no-startup-id bash -c 'scrot -s "$HOME/Pictures/%Y-%m-%d-%H%M%S.png" -e "xclip -selection clipboard -t image/png -i \"$f\" -loops 1"'
+bindsym --release Print exec --no-startup-id flameshot gui -c -p "$HOME/Pictures"
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -181,6 +181,9 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 # Suspend with Mod+Shift+z
 bindsym $mod+Shift+z exec systemctl suspend
 
+# Change audio output
+bindsym $mod+Shift+a exec --no-startup-id ../../../scripts/bin/audio-next-sink.sh
+
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
@@ -227,8 +230,8 @@ set $text-color      #ffffff
 set $inactive-text   #b8b8b8
 set $accent-color    #282c34
 
-bindsym F10 exec brightnessctl set +10%
-bindsym F9 exec brightnessctl set 10%-
+bindsym F7 exec brightnessctl set +10%
+bindsym F6 exec brightnessctl set 10%-
 
 # Active window
 client.focused          $accent-color $accent-color $text-color $accent-color $accent-color
@@ -243,7 +246,7 @@ client.urgent           #e06c75       #e06c75       $text-color   #e06c75       
 for_window [class="^.*"] border pixel 2
 
 
-exec_always --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/nordic-wallpapers/wallpapers/ign-0002.png
+exec_always --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/wall_secondary.png
 
 exec_always --no-startup-id picom --experimental-backends --backend glx --config ~/.config/picom/picom.conf --xrender-sync-fence
 
