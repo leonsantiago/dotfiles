@@ -43,7 +43,7 @@ done
 if $INTERNAL_ACTIVE && ! $EXTERNAL_ACTIVE; then
   # Solo interno → extender
   xrandr --output "$INTERNAL" --auto --primary \
-         --output "$EXTERNAL" --auto --right-of "$INTERNAL"
+         --output "$EXTERNAL" --auto --above "$INTERNAL"
   notify-send "🖥️🖥️ Modo extendido" "Monitor interno + externo activos"
 elif $INTERNAL_ACTIVE && $EXTERNAL_ACTIVE; then
   # Extendido → solo externo (enciende externo antes, apaga interno después)
