@@ -12,7 +12,12 @@ return {
   { "rebelot/kanagawa.nvim" },
   -- Xcode
   { "lunacookies/vim-colors-xcode" },
-
+  -- Neovim Ayu
+  { "shatur/neovim-ayu" },
+  -- Alabaster
+  { "p00f/alabaster.nvim" },
+  -- Badwolf
+  { "sjl/badwolf" },
   -- Default colorscheme
   {
     "LazyVim/LazyVim",
