@@ -36,7 +36,6 @@ bindsym --release Print exec --no-startup-id flameshot gui -c -p "$HOME/Pictures
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -137,9 +136,9 @@ bindsym $mod+n exec --no-startup-id networkmanager_dmenu
 set $ws1 "1:  Dev"
 set $ws2 "2:  Server"
 set $ws3 "3:  Work"
-set $ws4 "4:  Personal"
-set $ws5 "5:  Social"
-set $ws6 "6:  Gaming"
+set $ws4 "4: Motivus"
+set $ws5 "5: VPN"
+set $ws6 "6: Others"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
@@ -229,6 +228,7 @@ bindsym $mod+r mode "resize"
 
 
 # Gaps between windows
+gaps inner 20
 gaps outer 10
 smart_gaps off
 smart_borders on
@@ -261,7 +261,7 @@ client.urgent           #e06c75       #e06c75       $text-color   #e06c75       
 for_window [class="^.*"] border pixel 2
 
 
-exec_always --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/wall_secondary.png
+exec_always --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/ferns-green.jpg
 
 exec_always --no-startup-id picom --experimental-backends --backend glx --config ~/.config/picom/picom.conf --xrender-sync-fence
 
@@ -303,5 +303,8 @@ bindsym $mod+Shift+p exec --no-startup-id bash -c 'pgrep -x picom >/dev/null && 
 
 
 exec_always --no-startup-id sh -c "pkill -x polybar; sleep 1; polybar -r main --config=$HOME/.config/polybar/config.ini"
+# exec --no-startup-id /usr/bin/lxqt-policykit-agent
+# exec --no-startup-id sh -c "sleep 2; nm-applet"
+# exec --no-startup-id nm-applet
 
 exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets,ssh
