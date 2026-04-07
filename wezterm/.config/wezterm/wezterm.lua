@@ -11,9 +11,9 @@ local CURRENT_SCHEME = DARK_SCHEME
 -- Config normal
 config.initial_cols = 120
 config.initial_rows = 28
-config.font_size = 12
+config.font_size = 14
 config.color_scheme = DARK_SCHEME
-config.font = wezterm.font("JetBrains Mono SemiBold")
+config.font = wezterm.font("UbuntuMono Nerd Font")
 config.window_background_opacity = 0.7
 
 -- === Toggle Light/Dark con Ctrl+Shift+L ===

@@ -28,9 +28,11 @@ exec --no-startup-id dex --autostart --environment i3
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
-# Captura área → guarda y copia
+# Lock automatico
+#exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+
+# Screenshot with flameshot
 
 bindsym --release Print exec --no-startup-id flameshot gui -c -p "$HOME/Pictures"
 
@@ -52,13 +54,15 @@ bindsym XF86AudioMicMute      exec --no-startup-id wpctl set-mute   @DEFAULT_AUD
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec wezterm
+bindsym $mod+Return exec kitty
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # start rofi (a program launcher)
-bindsym $mod+d exec rofi -show drun -show-icons -icon-theme "Papirus"
+# bindsym $mod+d exec rofi -show drun -show-icons -icon-theme "Papirus"
+bindsym $mod+d exec rofi -show drun
+
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -96,12 +100,15 @@ bindsym $mod+Shift+h split h
 bindsym $mod+Shift+v split v
 
 # Move focused window to other monitor
-# bindsym $mod+Ctrl+Left  move container to output left
-# bindsym $mod+Ctrl+Right move container to output right
-
-# Move actual workspace between monitors
+bindsym $mod+Ctrl+h move container to output left
+bindsym $mod+Ctrl+l move container to output right
 bindsym $mod+Ctrl+k move workspace to output up
 bindsym $mod+Ctrl+j move workspace to output down 
+
+# Turnoff dpms
+exec --no-startup-id xset s off -dpms s noblank
+# Show all workspaces
+bindsym $mod+Shift+d exec --no-startup-id ~/.config/i3/scripts/workspace-menu.sh
 
 # Alter focused monitor
 bindsym $mod+Tab          focus output next
@@ -191,6 +198,8 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
+# lock i3
+bindsym $mod+Shift+x exec i3lock
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 # Suspend with Mod+Shift+z
@@ -231,7 +240,7 @@ bindsym $mod+r mode "resize"
 gaps inner 20
 gaps outer 10
 smart_gaps off
-smart_borders on
+# smart_borders on
 
 # Change gaps  
 bindsym $mod+minus gaps inner all minus 5
@@ -248,14 +257,13 @@ set $accent-color    #282c34
 bindsym F7 exec brightnessctl set +10%
 bindsym F6 exec brightnessctl set 10%-
 
-# Active window
-client.focused          $accent-color $accent-color $text-color $accent-color $accent-color
-# Inactive window
-client.focused_inactive $inactive-bg  $inactive-bg  $inactive-text $inactive-bg  $inactive-bg
-# unfocused window
-client.unfocused        $inactive-bg  $inactive-bg  $inactive-text $inactive-bg  $inactive-bg
-# focused windows 
-client.urgent           #e06c75       #e06c75       $text-color   #e06c75       #e06c75
+# class                 border      background  text        indicator   child_border
+client.focused          $amber      $amber      $bg         $yellow     $amber
+client.focused_inactive $muted      $muted      $cream      $muted      $muted
+client.unfocused        $bg         $bg         $gray       $bg         $bg
+client.urgent           $redorange  $redorange  $cream      $yellow     $redorange
+client.placeholder      $muted      $muted      $cream      $muted      $muted
+client.background       $bg
 
 # Todas las ventanas sin barra de título, solo borde fino
 for_window [class="^.*"] border pixel 2
@@ -283,28 +291,35 @@ bindsym $mod+Shift+p exec --no-startup-id bash -c 'pgrep -x picom >/dev/null && 
 # Start i3bar to display a workspace bar (plus the system information i3status
 #
 # bar {
-#   status_command i3blocks -c ~/.config/i3/i3blocks.conf
-#   position top
-#   font pango:JetBrainsMono Nerd Font 13
-#   separator_symbol " | "
-#   colors {
-#       background $bg-color
-#       statusline $text-color
-#       separator  $inactive-text
+#     status_command i3status
+#     colors {
+#         background $bg
+#         statusline $fg
+#         separator  $muted
 #
-#       focused_workspace  $accent-color $accent-color $text-color
-#       active_workspace   $inactive-bg  $inactive-bg  $text-color
-#       inactive_workspace $bg-color     $bg-color     $inactive-text
-#       urgent_workspace   #e06c75       #e06c75       $text-color
-#   }
+#         focused_workspace  $amber     $amber     $bg
+#         active_workspace   $orange    $orange    $bg
+#         inactive_workspace $bg        $bg        $gray
+#         urgent_workspace   $redorange $redorange $cream
+#         binding_mode       $yellow    $yellow    $bg
+#     }
 # }
 
 # Polybar
-
-
-exec_always --no-startup-id sh -c "pkill -x polybar; sleep 1; polybar -r main --config=$HOME/.config/polybar/config.ini"
+ exec_always --no-startup-id sh -c "pkill -x polybar; sleep 1; polybar -r main --config=$HOME/.config/polybar/config.ini"
 # exec --no-startup-id /usr/bin/lxqt-policykit-agent
 # exec --no-startup-id sh -c "sleep 2; nm-applet"
 # exec --no-startup-id nm-applet
+
+# --- Warm palette ---
+set $bg         #0a0908
+set $fg         #e4e6d1
+set $muted      #57553d
+set $gray       #afad96
+set $cream      #e4e6d1
+set $yellow     #feb648
+set $amber      #fb9800
+set $orange     #fe7702
+set $redorange  #de4c01
 
 exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets,ssh
