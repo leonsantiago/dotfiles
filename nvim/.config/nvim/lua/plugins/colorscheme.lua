@@ -1,13 +1,37 @@
 return {
   -- Gruvbox
   { "ellisonleao/gruvbox.nvim" },
-
+  -- Gruvbox-material
+  { "sainnhe/gruvbox-material" },
+  -- Koda
+  { "oskarnurm/koda.nvim" },
+  -- Evergarden
+  { "everviolet/nvim" },
+  -- gruber-darker.nvim
+  { "blazkowolf/gruber-darker.nvim" },
+  -- attron/bebop.nvim
+  {
+    "attron/bebop.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("bebop").setup()
+    end,
+  },
+  {
+    "craftzdog/solarized-osaka.nvim",
+    lazy = true,
+    priority = 1000,
+    opts = function()
+      return {
+        -- transparent = true, -- Makes your terminal background show through
+      }
+    end,
+  },
   -- Everforest
   { "sainnhe/everforest" },
-
   -- Sobrio
   { "elvessousa/sobrio" },
-
   -- Kanagawa
   { "rebelot/kanagawa.nvim" },
   -- Xcode
